@@ -1,4 +1,4 @@
-# AWS Text-to-Speech Converter (Project 1)
+# AWS Text-to-Speech Converter
 
 ## Project Overview
 This project automates the conversion of text documents (TXT, PDF, newsletters) into speech audio files (MP3). It leverages AWS serverless architecture to process files automatically upon upload.
