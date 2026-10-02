@@ -1,0 +1,38 @@
+name: Deploy Lambda to AWS
+
+# This tells GitHub to run this script every time you push code to the 'main' branch
+# specifically when the 'lambda_function.py' file is changed.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'lambda_function.py'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Download your code from GitHub to the runner
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Connect GitHub to your AWS account securely
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  # <-- CHANGE THIS to your actual AWS region (e.g., ap-southeast-1)
+
+      # Step 3: Zip your python file (AWS Lambda requires a .zip file for deployment)
+      - name: Zip Lambda Function
+        run: zip function.zip lambda_function.py
+
+      # Step 4: Use AWS CLI to update the Lambda function with the new zip file
+      - name: Deploy to AWS Lambda
+        run: |
+          aws lambda update-function-code \
+            --function-name Project1PollyTranslationFunction \
+            --zip-file fileb://function.zip
