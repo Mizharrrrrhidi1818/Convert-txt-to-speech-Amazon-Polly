@@ -11,9 +11,6 @@ This project automates the conversion of text documents (TXT, PDF, newsletters) 
 - **Amazon Polly**: Converts the extracted text into natural-sounding speech (Voice: Joanna).
 - **AWS IAM**: Manages secure access and permissions (`PollyTranslationRole`).
 
-## Pipeline Design
-# AWS Text-to-Speech Converter (Project 1)
-
 ## Project Overview
 This project automates the conversion of text documents (TXT, PDF, newsletters) into speech audio files (MP3). It leverages AWS serverless architecture to process files automatically upon upload.
 
@@ -27,7 +24,6 @@ This project automates the conversion of text documents (TXT, PDF, newsletters) 
 
 ## Pipeline Design
 <img width="940" height="450" alt="image" src="https://github.com/user-attachments/assets/55106677-8fe6-4953-8d8c-ff8ba45b2c22" />
-
 
 ## Estimated Cost
 - **Free Tier**: This project can be run entirely within the AWS Free Tier limits.
