@@ -3,27 +3,16 @@
 ## Project Overview
 This project automates the conversion of text documents (TXT, PDF, newsletters) into speech audio files (MP3). It leverages AWS serverless architecture to process files automatically upon upload.
 
-## Architecture & Services Used
-- **Amazon S3**: 
-  - `project1-polly-text-files-storage-bucket`: Stores input text files.
-  - `project1-polly-audio-files-storage-bucket`: Stores output MP3 audio files.
-- **AWS Lambda**: Acts as the processing engine (`Project1PollyTranslationFunction`) that connects the text file to the audio conversion.
-- **Amazon Polly**: Converts the extracted text into natural-sounding speech (Voice: Joanna).
-- **AWS IAM**: Manages secure access and permissions (`PollyTranslationRole`).
-
-## Project Overview
-This project automates the conversion of text documents (TXT, PDF, newsletters) into speech audio files (MP3). It leverages AWS serverless architecture to process files automatically upon upload.
-
-## Architecture & Services Used
-- **Amazon S3**: 
-  - `project1-polly-text-files-storage-bucket`: Stores input text files.
-  - `project1-polly-audio-files-storage-bucket`: Stores output MP3 audio files.
-- **AWS Lambda**: Acts as the processing engine (`Project1PollyTranslationFunction`) that connects the text file to the audio conversion.
-- **Amazon Polly**: Converts the extracted text into natural-sounding speech (Voice: Joanna).
-- **AWS IAM**: Manages secure access and permissions (`PollyTranslationRole`).
-
 ## Pipeline Design
 <img width="940" height="450" alt="image" src="https://github.com/user-attachments/assets/55106677-8fe6-4953-8d8c-ff8ba45b2c22" />
+
+## Architecture & Services Used
+- **Amazon S3**: 
+  - `project1-polly-text-files-storage-bucket`: Stores input text files.
+  - `project1-polly-audio-files-storage-bucket`: Stores output MP3 audio files.
+- **AWS Lambda**: Acts as the processing engine (`Project1PollyTranslationFunction`) that connects the text file to the audio conversion.
+- **Amazon Polly**: Converts the extracted text into natural-sounding speech (Voice: Joanna).
+- **AWS IAM**: Manages secure access and permissions (`PollyTranslationRole`).
 
 ## Estimated Cost
 - **Free Tier**: This project can be run entirely within the AWS Free Tier limits.
