@@ -12,12 +12,14 @@ This project automates the conversion of text documents (TXT, PDF, newsletters) 
 - **AWS IAM**: Manages secure access and permissions (`PollyTranslationRole`).
 
 ## Pipeline Design
+
+```mermaid
 graph TD
     %% User and Input
     User((User)) -->|1. Uploads Document| S3_Input[(S3 Input Bucket<br/>project1-polly-text-files-storage-bucket)]
     
     %% Event Trigger
-    S3_Input -->|2. S3 PUT Event Trigger<br/>(.txt / .pdf)| Lambda[AWS Lambda<br/>Project1PollyTranslationFunction]
+    S3_Input -->|2. S3 PUT Event Trigger<br/>| Lambda[AWS Lambda<br/>Project1PollyTranslationFunction]
     
     %% Processing
     Lambda -->|3. Extract Text &<br/>Request Synthesis| Polly[Amazon Polly<br/>Voice: Joanna]
@@ -33,24 +35,7 @@ graph TD
     
     %% Notification (Pro Feature)
     S3_Output -->|7. Object Created Event| SNS[Amazon SNS<br/>Email Notification]
-    SNS -->|8. 'Your audio is ready!'| User
+    SNS -->|8. Your audio is ready!| User
     
     %% Download
     S3_Output -->|9. Download MP3| User
-
-## Estimated Cost
-- **Free Tier**: This project can be run entirely within the AWS Free Tier limits.
-
-## Setup Instructions
-1. **IAM Role**: Create a role named `PollyTranslationRole` with policies: `AmazonPollyFullAccess`, `AmazonS3FullAccess`, and `AWSLambdaBasicExecutionRole`.
-2. **S3 Buckets**: Create the two buckets mentioned above.
-3. **Lambda Function**: 
-   - Create function `Project1PollyTranslationFunction`.
-   - Add S3 Trigger: Bucket `project1-polly-text-files-storage-bucket`, Event `PUT`, Suffix `.txt`.
-   - Add Destination: Asynchronous invocation, On failure, S3 `project1-polly-audio-files-storage-bucket`.
-   - Deploy the code from `lambda_function.py`.
-
-## Usage
-1. Upload a `.txt` file (e.g., `test.txt`) to `project1-polly-text-files-storage-bucket`.
-2. The Lambda function will automatically trigger.
-3. Once processed, download the generated MP3 file (e.g., `speech-<timestamp>.mp3`) from `project1-polly-audio-files-storage-bucket`.
